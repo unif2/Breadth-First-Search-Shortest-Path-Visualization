@@ -74,6 +74,7 @@ class Board
         sf::Text text8; // Text describing result of shortest path.
         sf::Text text9; // Text describing result of time taken.
         sf::Text text10; // Text describing result of time taken.
+        sf::Text text11; // Text prompting user to try again.
         sf::Sprite goSprite; // Sprite representing the "Go" button to start shortest path.
         sf::Texture goTexture; // Go button associated texture.
         sf::Sprite resetSprite; // Sprite representing the "Reset" button to reset the board.
@@ -81,11 +82,14 @@ class Board
         sf::Sprite linkedListSprite; // Sprite representing linked list button.
         sf::Texture linkedListTexture; // Linked list button associated texture.
         sf::Sprite mapSprite; // Sprite representing map button.
-        sf::Texture mapTexture; // Map button associated texture. 
+        sf::Texture mapTexture; // Map button associated texture.
+        sf::Sprite tryAgainSprite; // Sprite representing Try Again button.
+        sf::Texture tryAgainTexture; // Try Again button associated texture.
         duration<double, std::milli> duration; // Time taken by algorithm.
         bool mapSelected; // True if map implementation was selected, false otherwise.
         bool linkedListSelected; // True if linked list implementation was selected, false otherwise.
         bool goButtonClicked; // True when Go button is clicked.  Becomes false when program starts and when board is reset.
+        bool tryAgainClicked; // True when Try Again button is clicked.  Is false when program starts and after reset is selected.
         Tile* source; // Source tile, as selected by user.
         Tile* destin; // Destination tile, as selected by user.
         void makeGraphs(); // Constructs both graph implementations.  Runs in the Board constructor.

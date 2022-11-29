@@ -417,6 +417,23 @@ void Board::displayText(sf::RenderWindow& window)
         text10.setFillColor(sf::Color::White);
         window.draw(text10);
     }
+
+    // Displays when the Try Again button is clicked.
+    if (tryAgainClicked)
+    {
+        text11.setFont(font);
+        text11.setString("Click to try again");
+        text11.setPosition(sf::Vector2f(1715.f, 450.f));
+        text11.setCharacterSize(20);
+        text11.setFillColor(sf::Color::White);
+        window.draw(text11);
+        
+        // Displays the Try Again button.
+        tryAgainTexture.loadFromFile("images/tryagain.jpg");
+        tryAgainSprite.setTexture(tryAgainTexture);
+        tryAgainSprite.setPosition(sf::Vector2f(1765.f, 480.f));
+        window.draw(tryAgainSprite);
+    }
 }
 
 int* Board::shortestPathGraph()
@@ -711,6 +728,7 @@ void Board::resetBoard()
     mapSelected = false;
     linkedListSelected = false;
     goButtonClicked = false;
+    tryAgainClicked = false;
     source = nullptr;
     destin = nullptr;
 
@@ -750,6 +768,7 @@ Board::Board()
     mapSelected = false;
     linkedListSelected = false;
     goButtonClicked = false;
+    tryAgainClicked = false;
     makeGraphs();
 }
 
@@ -901,6 +920,7 @@ void Board::play(sf::RenderWindow& window)
                     else if (goSprite.getGlobalBounds().contains(position.x, position.y) && shortestPath.size() == 0)
                     {
                         goButtonClicked = true;
+                        tryAgainClicked = true;
                         int* p;
 
                         // User selected the map implementation.
@@ -913,6 +933,24 @@ void Board::play(sf::RenderWindow& window)
 
                         // After algorithm finishes, display the shortest path if it exists.
                         displayShortestPath(p);
+                    }
+
+                    // User clicked Try Again button, so user can run the algorithm again using the same tile selections.
+                    // This allows the user to quickly compare graph implementations in terms of running time.
+                    else if (tryAgainSprite.getGlobalBounds().contains(position.x, position.y))
+                    {
+                        tryAgainClicked = false;
+                        goButtonClicked = false;
+                        mapSelected = false;
+                        linkedListSelected = false;
+                        
+                        for (int i = 0; i < shortestPath.size(); i++)
+                        {
+                            if (!shortestPath[i]->isSource && !shortestPath[i]->isDest)
+                                shortestPath[i]->setTileColor(sf::Color::Black);
+                        }
+                        
+                        shortestPath.clear();
                     }
                 }
             }
