@@ -25,8 +25,8 @@ using std::vector;
 using namespace std::chrono;
 
 const float borderThickness = 0.5; // Thickness of tile's border.
-const int tilesX = 50; // Number of tiles in each row.  Normally 250, but 25 to make the tiles easier to see.
-const int tilesY = 50; // Number of rows of tiles.  Normally 250.
+const int tilesX = 250; // Number of tiles in each row.  Normally 250, but 25 to make the tiles easier to see.
+const int tilesY = 250; // Number of rows of tiles.  Normally 250.
 const float xSize = (1710.f / tilesX) - 1; // Length of each tile.
 const float ySize = (1080.f / tilesX) - 1; // Height of each tile.
 

@@ -877,16 +877,15 @@ void Board::play(sf::RenderWindow& window)
                 else if (event.mouseButton.button == sf::Mouse::Right && i < tilesX && j < tilesY && !goButtonClicked)
                 {
                     // User right-clicked on an empty tile (not source and not destination)
-                    // Set that tile as an obstacle tile.
-                    if (source != posToTile[{i, j}].first && destin != posToTile[{i, j}].first)
+                    // Set that tile as an obstacle tile, as long as there is room for a source and destination tile.
+                    if (source != posToTile[{i, j}].first && destin != posToTile[{i, j}].first && posToTile[{i, j}].first->isObst ==false && obstacles.size() < graphMap.size() - 2)
                     {
                         posToTile[{i, j}].first->setTileColor(sf::Color::Magenta);
                         posToTile[{i, j}].first->isObst = true;
                         obstacles.insert(posToTile[{i, j}].first);
                     }
 
-                    // This doesn't work for some reason.  Purpose is to undo selection of an obstacle tile.
-                    //else if (obstacles.count(posToTile[{i, j}].first))
+                    // Undo selection of an obstacle tile.
                     else if (posToTile[{i, j}].first->isObst)
                     {
                         posToTile[{i, j}].first->setTileColor(sf::Color::Black);
