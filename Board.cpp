@@ -943,12 +943,18 @@ void Board::play(sf::RenderWindow& window)
                         mapSelected = false;
                         linkedListSelected = false;
                         
-                        for (int i = 0; i < shortestPath.size(); i++)
+                        // There was a path that was found during the most recent run, so make the path tiles (except
+                        // for the source and destination tiles) return to their default color (Black).
+                        if (shortestPath[0] != nullptr)
                         {
-                            if (!shortestPath[i]->isSource && !shortestPath[i]->isDest)
-                                shortestPath[i]->setTileColor(sf::Color::Black);
+                            for (int i = 0; i < shortestPath.size(); i++)
+                            {
+                                if (!shortestPath[i]->isSource && !shortestPath[i]->isDest)
+                                    shortestPath[i]->setTileColor(sf::Color::Black);
+                            }
                         }
                         
+                        // Clear the vector.
                         shortestPath.clear();
                     }
                 }
