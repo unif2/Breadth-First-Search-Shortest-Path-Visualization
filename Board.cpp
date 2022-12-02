@@ -954,7 +954,7 @@ void Board::play(sf::RenderWindow& window)
                             }
                         }
                         
-                        // Clear the vector.
+                        // Clear the vector whether or not a path was found.
                         shortestPath.clear();
                     }
                 }
