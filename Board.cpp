@@ -878,7 +878,7 @@ void Board::play(sf::RenderWindow& window)
                 {
                     // User right-clicked on an empty tile (not source and not destination)
                     // Set that tile as an obstacle tile, as long as there is room for a source and destination tile.
-                    if (source != posToTile[{i, j}].first && destin != posToTile[{i, j}].first && posToTile[{i, j}].first->isObst ==false && obstacles.size() < graphMap.size() - 2)
+                    if (source != posToTile[{i, j}].first && destin != posToTile[{i, j}].first && posToTile[{i, j}].first->isObst == false && obstacles.size() < graphMap.size() - 2)
                     {
                         posToTile[{i, j}].first->setTileColor(sf::Color::Magenta);
                         posToTile[{i, j}].first->isObst = true;
